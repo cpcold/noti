@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/P"
+        android:layout_width="91dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="72dp"
+        android:text="principal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/rate"
+        android:layout_width="93dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:text="interest rate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/P" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="90dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="19dp"
+        android:text="No of months"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate" />
+
+    <EditText
+        android:id="@+id/principle"
+        android:layout_width="188dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="72dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/P"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ra"
+        android:layout_width="191dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/rate"
+        app:layout_constraintTop_toBottomOf="@+id/principle" />
+
+    <EditText
+        android:id="@+id/no"
+        android:layout_width="196dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/ra" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="43dp"
+        android:text="cal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/ans"
+        android:layout_width="145dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="38dp"
+        android:text="Ans"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/no" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+//java code 1//
+
+package com.example.emi;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText r;
+    EditText p;
+    EditText n;
+    Button b;
+    TextView result;
+    Double an;
+    int rate,prin,no;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        r=findViewById(R.id.ra);
+        p=findViewById(R.id.principle);
+        n=findViewById(R.id.no);
+        result=findViewById(R.id.ans);
+        b=findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                r=findViewById(R.id.ra);
+                p=findViewById(R.id.principle);
+                n=findViewById(R.id.no);
+                result=findViewById(R.id.ans);
+                b=findViewById(R.id.button);
+                rate=Integer.parseInt(r.getText().toString());
+                prin=Integer.parseInt(p.getText().toString());
+                no=Integer.parseInt(n.getText().toString());
+                an=Math.pow(prin*rate*(1+rate),no)/Math.pow(1+rate,no-1);
+                //an=rate+prin;
+                result.setText(""+an);
+            }
+        });
+
+    }
+
+    public void res (View v){
+
+    }
+}
+
+//java code 2////
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    EditText r;
+    EditText p;
+    EditText n;
+    Button b;
+    TextView result;
+    Double an;
+    float rate,prin,no;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        r=findViewById(R.id.ra);
+        p=findViewById(R.id.principle);
+        n=findViewById(R.id.no);
+        result=findViewById(R.id.ans);
+        b=findViewById(R.id.button);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                r=findViewById(R.id.ra);
+                p=findViewById(R.id.principle);
+                n=findViewById(R.id.no);
+                result=findViewById(R.id.ans);
+                b=findViewById(R.id.button);
+                rate=Float.parseFloat(r.getText().toString());
+                prin=Float.parseFloat(p.getText().toString());
+                no=Float.parseFloat(n.getText().toString());
+
+                float Principal = calPric(prin);
+                float Rate = calInt(rate);
+                float Months = calMonth(no);
+                float Dvdnt = calDvdnt( Rate, Months);
+
+                float FD = calFinalDvdnt (Principal, Rate, Dvdnt);
+                float D = calDivider(Dvdnt);
+                float emi = calEmi(FD, D);
+                float TA = calTa (emi, Months);
+                float ti = calTotalInt(TA, Principal);
+
+                //an=Math.pow(prin*rate*(1+rate),no)/Math.pow(1+rate,no-1);
+                //an=rate+prin;
+                result.setText(String.valueOf(emi));
+            }
+        });
+
+    }
+   public  float calPric(float p) {
+                return (float) (p);
+           }
+	    public  float calInt(float i) {
+        	        return (float) (i/12/100);
+           }
+	    public  float calMonth(float y) {
+                return (float) (y * 12);
+          }
+	    public  float calDvdnt(float Rate, float Months) {
+                return (float) (Math.pow(1+Rate, Months));
+            }
+	    public  float calFinalDvdnt(float Principal, float Rate, float Dvdnt) {
+                return (float) (Principal * Rate * Dvdnt);
+           }
+	    public  float calDivider(float Dvdnt) {
+                return (float) (Dvdnt-1);
+            }
+	    public  float calEmi(float FD, Float D) {
+                return (float) (FD/D);
+           }
+	    public  float calTa(float emi, Float Months) {
+               return (float) (emi*Months);
+          }
+	    public  float calTotalInt(float TA, float Principal) {
+                return (float) (TA - Principal);
+            }
+
+}
